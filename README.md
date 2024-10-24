@@ -116,7 +116,3 @@ Compression Ratio: 0.46
 ========================================
 ...
 ```
-
-## License
-
-This project is open-source and freely available for modification and distribution under the  License.
