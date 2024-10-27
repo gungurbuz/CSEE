@@ -7,6 +7,7 @@ import gzip
 import snappy
 import lz4.frame
 import argparse
+import csv
 from tqdm import tqdm  # For progress bars
 
 
@@ -113,6 +114,23 @@ def compress_text_files(input_directory):
     return results
 
 
+def save_results_to_csv(results, directory):
+    """Save compression results to a CSV file."""
+    results_file_path = os.path.join(directory, "compression_results.csv")
+
+    with open(results_file_path, mode='w', newline='') as csv_file:
+        fieldnames = [
+            'Language', 'Algorithm', 'Input Size (bytes)',
+            'Output Size (bytes)', 'Compression Time (s)', 'Compression Ratio'
+        ]
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+
+        writer.writeheader()
+        for result in results:
+            writer.writerow(result)
+
+    print(f"Results saved to {results_file_path}.")
+
 def main():
     # Ask user for the directory in the terminal
     directory = input("Please enter the directory path (leave blank for current directory): ").strip()
@@ -127,23 +145,10 @@ def main():
     # Compress text files in the specified directory
     results = compress_text_files(directory)
 
-    # Ask the user if they want to save the results to a file
-    save_to_file = input("\nDo you want to save the results to a file? (yes/no): ").strip().lower()
-    if save_to_file == 'y' or "Y" or "yes" or "Yes":
-        results_file_path = os.path.join(directory, "compression_results.txt")
-        with open(results_file_path, 'w') as log_file:
-            log_file.write("Compression Results Log\n")
-            log_file.write("=" * 40 + "\n")
-            for result in results:
-                log_file.write(f"Language: {result['Language']}\n")
-                log_file.write(f"Algorithm: {result['Algorithm']}\n")
-                log_file.write(f"Input Size: {result['Input Size (bytes)']} bytes\n")
-                log_file.write(f"Output Size: {result['Output Size (bytes)']} bytes\n")
-                log_file.write(f"Compression Time: {result['Compression Time (s)']:.6f} seconds\n")
-                log_file.write(f"Compression Ratio: {result['Compression Ratio']:.2f}\n")
-                log_file.write("=" * 40 + "\n")
-        print(f"Results saved to {results_file_path}.")
-
+    # Ask the user if they want to save the results to a CSV file
+    save_to_file = input("\nDo you want to save the results to a CSV file? (yes/no): ").strip().lower()
+    if save_to_file == 'yes':
+        save_results_to_csv(results, directory)
 
 if __name__ == "__main__":
     main()
