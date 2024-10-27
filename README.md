@@ -35,7 +35,7 @@ pip install tqdm lz4 brotli python-snappy
 2. Run the Python script from the terminal.
 
 ```bash
-python compressor.py
+python main.py
 ```
 
 3. When prompted, provide the directory containing text files for compression. If you don't provide any input, the program will use the current directory.
@@ -66,7 +66,7 @@ pip install pyinstaller
 Run the following command to create a single-file executable:
 
 ```bash
-pyinstaller --onefile --console compressor.py
+pyinstaller --onefile --console main.py
 ```
 
 The executable will be generated in the `dist` folder.
@@ -80,7 +80,7 @@ You can run the generated executable by double-clicking it or running it from th
 ### Example
 
 ```bash
-compressor.exe
+main.exe
 ```
 
 If you leave the directory prompt blank, it will use the current working directory.
@@ -97,22 +97,10 @@ Compression Time: 1.234567 seconds
 Compression Ratio: 0.36
 ...
 Do you want to save the results to a file? (yes/no): yes
-Results saved to compression_results.txt.
+Results saved to compression_results.csv.
 ```
 
 ## Logs
 
-When the user opts to save the results, the program generates a `compression_results.txt` file in the specified directory with the following format:
+When the user opts to save the results, the program generates a `compression_results.csv` file in the specified directory with the following format:
 
-```plaintext
-Compression Results Log
-========================================
-Language: example_file
-Algorithm: Zlib
-Input Size: 123456 bytes
-Output Size: 56789 bytes
-Compression Time: 1.234567 seconds
-Compression Ratio: 0.46
-========================================
-...
-```
