@@ -102,5 +102,5 @@ Results saved to compression_results.csv.
 
 ## Logs
 
-When the user opts to save the results, the program generates a `compression_results.csv` file in the specified directory with the following format:
+When the user opts to save the results, the program generates a `compression_results.csv` file in the specified directory.
 
