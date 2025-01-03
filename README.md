@@ -1,3 +1,7 @@
+<!-- BADGIE TIME -->
+
+<!-- END BADGIE TIME -->
+
 # Text Compression Program
 
 This Python program compresses text files using various lossless compression algorithms, including Zlib, LZMA, Brotli, Gzip, Snappy, and LZ4. It supports directory input, progress bars for each algorithm, and logs the results (compression time, input/output file sizes, and compression ratio). The program can be run from the command line or as an executable and interactively asks whether to save the results.
